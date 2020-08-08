@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title> Feelings </title>
+  <link rel="stylesheet" href="button-style.css"/>
+</head>
+<body onload="hideAndStopAllVideos()">
+
+<div id="div1">
+  <button type='button' class ='orange' value='happy' onclick="switchContent(this)"> Happy </button>
+  <button type='button' class ='blue' value='stress' onclick="switchContent(this)"> Stressed </button>
+  <button type='button' class ='red' value='covided' onclick="switchContent(this)"> Covided </button>
+  <button type='button' class ='orange' value='sleepy' onclick="switchContent(this)"> Sleepy </button>
+  <button type='button' class ='blue' value='crying' onclick="switchContent(this)"> Crying </button>
+
+</div>
+
+<div id="div2">
+
+<video id="em1"  src="videos/happy.mp4" controls  width="940px" height="600px"> </video>
+<video id="em2"  src="videos/stress.mp4" controls  width="940px" height="600px"> </video>
+<video id="em3"  src="videos/covided.mp4" controls  width="940px" height="600px"> </video>
+<video id="em4"  src="videos/sleepy.mp4" controls  width="940px" height="600px"> </video>
+<video id="em5"  src="videos/crying.mp4" controls  width="940px" height="600px"> </video>
+
+</div>
+
+
+<script>
+function switchContent(buttonObj) {
+  document.getElementById('div1').style.display='none';
+
+  var text;
+  var emotion = buttonObj.value;
+
+
+  switch(emotion) {
+    case "happy":
+      id = "em1";
+    break;
+    case "stress":
+      id = "em2";
+    break;
+    case "covided":
+      id = "em3";
+    break;
+    case "sleepy":
+      id = "em4";
+    break;
+    case "crying":
+      id = "em5";
+    break;
+  }
+  showSelectedVideoForSeconds(id, 10000);
+}
+
+var ids = ['em1', 'em2', 'em3', 'em4', 'em5'];
+function showSelectedVideoForSeconds(id, milliseconds){
+  var vid = document.getElementById(id);
+  vid.style.display = 'block';
+  vid.play();
+   document.getElementById('div2').style.display='block';
+   setTimeout(function () {
+       stopSelectedVideo(id);
+   }, milliseconds);
+   setTimeout(function () {
+       document.getElementById('div1').style.display='block';
+   }, milliseconds);
+}
+
+function stopSelectedVideo(id) {
+  document.getElementById('div2').style.display='none';
+  var video = document.getElementById(id);
+  video.pause();
+  video.style.display='none'
+}
+
+function hideAndStopAllVideos(){
+  document.getElementById('div2').style.display='none';
+            for(i=0;i<ids.length;i++){
+                var video = document.getElementById(ids[i]);
+                video.pause();
+                video.style.display='none'
+            }
+        }
+</script>
+</body>
+</html>
