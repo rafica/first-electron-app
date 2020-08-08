@@ -1,3 +1,3 @@
-# first-electron-app
+# states-of-mind
 
 ## Shows different states of the mind
